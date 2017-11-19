@@ -9,7 +9,8 @@ module.exports = {
             email: 'hhwang0908@gmail.com',
             targetEmail: 'anthonybui@gmail.com',
             createdAt: new Date(),
-            updatedAt: new Date()
+            updatedAt: new Date(),
+            password: 'jennifer'
         }], {});
 
         /*
