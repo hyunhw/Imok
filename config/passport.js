@@ -29,7 +29,7 @@ module.exports = (passport) => {
             .then( user => {
                 // if the user email is taken..
                 if (user) {
-                    return done(null, false, { message: 'The email is already taken.' });
+                    return done(null, false, req.flash('signupError', 'The email is already taken.'));
                 }
                 User.create({
                     name: req.body.name,

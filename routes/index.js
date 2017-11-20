@@ -30,7 +30,10 @@ router.post('/login', passport.authenticate('local-login',
 
 /* GET signup page */
 router.get('/signup', (req, res, next) => {
-    res.render('signup', { title: 'Sign up' });
+    res.render('signup', { 
+        title: 'Sign up',
+        message: req.flash('signupError')
+    });
 });
 
 /* Auth, POST to signup */
