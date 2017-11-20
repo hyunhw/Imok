@@ -1,7 +1,11 @@
 <div class="index">
     <div class="row">
         <div class="col-md-10 offset-md-1">
+            <% if (locals.user) { %>
+            <h1>Welcome to I'm OK, <%= locals.user.name %>!</h1>
+            <% } else { %>
             <h1>Welcome to I'm OK!</h1>
+            <% } %>
             <p>
             This web application is a tool for people to sign in every 24 hours.<br/>
             If you don't sign in for 24 hours, the dead man's switch will go off and emails will be sent to alert that you are *DEAD*. 
