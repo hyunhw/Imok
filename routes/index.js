@@ -42,4 +42,10 @@ router.post('/signup', passport.authenticate('local-signup',
     })
 );
 
+/* GET logout page */
+router.get('/logout', (req, res) => {
+    req.logout();
+    res.render('index', { message: req.flash('You have been logged out') });
+});
+
 module.exports = router;

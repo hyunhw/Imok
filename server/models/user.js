@@ -27,12 +27,6 @@ module.exports = (sequelize, DataTypes) => {
     };
 
     user.hook('beforeCreate', (user, options) => {
-        console.log('hook function \'before create\' is being hit!');
-        // bcrypt.genSalt(10, function(err, salt) {
-        //     bcrypt.hash(user.password, salt, null, function(err, hash) {
-        //         user.password = hash;
-        //     });
-        // });
         return cryptPassword(user.password)
             .then( hashed => {
                 user.password = hashed;
@@ -46,11 +40,14 @@ module.exports = (sequelize, DataTypes) => {
         // return password === this.password;
     };
 
-    function cryptPassword(password) {
-        console.log('cryptPassword' + password);
+    /*
+     * bcrypt hash is async so needs to return a promise in order to hash and save pw in db
+     */
+    function cryptPassword (password) {
+        // console.log('cryptPassword' + password);
         return new Promise(function(resolve, reject) {
             bcrypt.genSalt(10, function(err, salt) {
-                // Encrypt password using bycrpt module
+                // Encrypt password using bcrypt module
                 if (err) return reject(err);
 
                 bcrypt.hash(password, salt, null, function(err, hash) {
