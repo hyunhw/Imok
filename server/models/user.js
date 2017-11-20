@@ -37,14 +37,12 @@ module.exports = (sequelize, DataTypes) => {
     });
     user.prototype.validPassword = function (password) {
         return bcrypt.compareSync(password, this.password);
-        // return password === this.password;
     };
 
     /*
      * bcrypt hash is async so needs to return a promise in order to hash and save pw in db
      */
     function cryptPassword (password) {
-        // console.log('cryptPassword' + password);
         return new Promise(function(resolve, reject) {
             bcrypt.genSalt(10, function(err, salt) {
                 // Encrypt password using bcrypt module

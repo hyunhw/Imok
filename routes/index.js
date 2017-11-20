@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
 
 /* GET login page */
 router.get('/login', (req, res, next) => {
-    res.render('login');
+    res.render('login', { message: req.flash('signedIn')}) ;
 });
 
 /* Auth, POST to login */
@@ -48,7 +48,8 @@ router.post('/signup', passport.authenticate('local-signup',
 /* GET logout page */
 router.get('/logout', (req, res) => {
     req.logout();
-    res.render('index', { message: req.flash('You have been logged out') });
+    req.flash('signedOut', 'You have been successfully signed out');
+    res.render('login', { message: req.flash('signedOut') });
 });
 
 module.exports = router;
