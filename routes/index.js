@@ -16,7 +16,12 @@ router.get('/', function(req, res, next) {
 
 /* GET login page */
 router.get('/login', (req, res, next) => {
-    res.render('login', { message: req.flash('signedIn')}) ;
+    let locals = {};
+    if (req.isAuthenticated()){
+        console.log('inside is authenticated ' + req.user);
+        locals.user = req.user;
+    }
+    res.render('login', locals) ;
 });
 
 /* Auth, POST to login */
@@ -48,8 +53,7 @@ router.post('/signup', passport.authenticate('local-signup',
 /* GET logout page */
 router.get('/logout', (req, res) => {
     req.logout();
-    req.flash('signedOut', 'You have been successfully signed out');
-    res.render('login', { message: req.flash('signedOut') });
+    res.render('index');
 });
 
 module.exports = router;
