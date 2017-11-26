@@ -53,10 +53,10 @@ module.exports = (passport) => {
             .find({ where: { email: email } })
             .then( user => {
                 if (!user) {
-                    return done(null, false, { message: 'Incorrect email address.' });
+                    return done(null, false, req.flash('incorrectLogin', 'Invalid email address.'));
                 }
                 if (!user.validPassword(password)) {
-                    return done(null, false, { message: 'Incorrect password.' });
+                    return done(null, false, req.flash('incorrectLogin', 'Mismatching email / password.' ));
                 }
                 return done(null, user, req.flash('signedIn', 'You are signed in as ' + user.email));
             });

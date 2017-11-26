@@ -18,10 +18,9 @@ router.get('/', function(req, res, next) {
 router.get('/login', (req, res, next) => {
     let locals = {};
     if (req.isAuthenticated()){
-        console.log('inside is authenticated ' + req.user);
         locals.user = req.user;
     }
-    res.render('login', locals) ;
+    res.render('login', {locals: locals, message: req.flash('incorrectLogin') });
 });
 
 /* Auth, POST to login */
