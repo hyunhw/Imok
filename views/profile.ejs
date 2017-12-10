@@ -1,15 +1,19 @@
 <div class="profile">
     <div class="row">
         <div class="col-md-10 offset-md-1">
-            <% if (locals.user) { %>
-            <h1>Welcome to I'm OK, <%= locals.user.name %>!</h1>
-            <% } else { %>
-            <h1>Welcome to I'm OK!</h1>
-            <% } %>
-            <p>
-            This web application is a tool for people to check in every 24 hours.<br/>
-            If you don't sign in for 24 hours, the dead man's switch will go off and emails will be sent to alert that you are *DEAD*. 
-            </p>
+            <div class="card mx-auto" style="width: 30rem;">
+                <img class="card-img-top" src="images/usr-img-placeholder.png" alt="Card image cap" />
+                <div class="card-body">
+                    <h4 class="card-title"><%= locals.user.name %>(<%=locals.user.id %>)</h4>
+
+                    <h6 class="yourEmail">Your Email: </h6>
+                    <p><%= locals.user.email %></p>
+
+                    <h6 class="targetEmail">Target Email: </h6>
+                    <p><%= locals.user.targetEmail %></p>
+                    <a href="/profile/update" class="btn btn-primary">Update profile</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

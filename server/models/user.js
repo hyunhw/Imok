@@ -35,6 +35,17 @@ module.exports = (sequelize, DataTypes) => {
                 if (err) console.log(err);
             });
     });
+
+    user.hook('beforeUpdate', (user, options) => {
+        return cryptPassword(user.password)
+            .then( hashed => {
+                user.password = hashed;
+            })
+            .catch( err => {
+                if (err) console.log(err);
+            });
+    });
+
     user.prototype.validPassword = function (password) {
         return bcrypt.compareSync(password, this.password);
     };

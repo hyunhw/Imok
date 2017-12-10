@@ -1,0 +1,22 @@
+<div class="update">
+    <p>Update profile</p>
+    <form method='POST' action="">
+        <div class="form-group">
+            <label for="updateName">Name</label>
+            <input type="text" name="name" class="form-control" id="updateName" placeholder=<%=locals.user.name %>>
+        </div>
+        <div class="form-group">
+            <label for="updateEmail">Email address</label>
+            <input type="email" name="email" class="form-control" id="updateEmail" placeholder=<%= locals.user.email %>>
+        </div>
+        <div class="form-group">
+            <label for="updatePassword">Password</label>
+            <input type="password" name="password" class="form-control" id="updatePassword" placeholder="Enter password">
+        </div>
+        <div class="form-group">
+            <label for="updatePassword">Target Email</label>
+            <input type="email" name="targetEmail" class="form-control" id="updateTargetEmail" placeholder=<%= locals.user.targetEmail %>>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
