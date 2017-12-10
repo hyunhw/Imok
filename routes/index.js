@@ -49,7 +49,7 @@ router.get('/profile/update', (req, res) => {
     let locals = {};
     if (req.isAuthenticated()){
         locals.user = req.user;
-        res.render('updateprofile', locals);
+        res.render('updateprofile', {locals: locals, message: req.flash('updateError')});
     } else {
         res.redirect('/');
     }
@@ -60,7 +60,6 @@ router.post('/profile/update', (req, res) => {
     //usersController.update;
     if (req.isAuthenticated()){
         usersController.update(req, res);
-        res.redirect('/profile');
     } else {
         res.redirect('/');
     }

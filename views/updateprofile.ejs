@@ -8,6 +8,9 @@
         <div class="form-group">
             <label for="updateEmail">Email address</label>
             <input type="email" name="email" class="form-control" id="updateEmail" placeholder=<%= locals.user.email %>>
+            <% if ( message ) { %>
+            <div class="flash"><%= message %></div>
+            <% } %>
         </div>
         <div class="form-group">
             <label for="updatePassword">Password</label>
