@@ -112,7 +112,7 @@ exports = module.exports = __webpack_require__(3)(undefined);
 
 
 // module
-exports.push([module.i, ".container {\n  padding-top: 50px; }\n\n.flash {\n  color: red; }\n", ""]);
+exports.push([module.i, ".container {\n  padding-top: 50px; }\n\n.flash {\n  color: red; }\n\n.btn.btn-checkin {\n  padding: 0 2em 0 2em;\n  background-color: red;\n  display: block;\n  margin: 0 auto;\n  color: white;\n  font-size: 5em; }\n", ""]);
 
 // exports
 

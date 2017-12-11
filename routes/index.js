@@ -4,6 +4,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const usersController =  require('../controllers').users;
+const checkinsController =  require('../controllers').checkins;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -26,18 +27,41 @@ router.get('/login', (req, res, next) => {
 /* Auth, POST to login */
 router.post('/login', passport.authenticate('local-login', 
     { 
-        successRedirect: '/',
+        successRedirect: '/dashboard',
         failureRedirect: '/login',
         failureFlash: true 
     })
 );
+
+/* GET dashboard page. */
+router.get('/dashboard', function(req, res, next) {
+    let locals = {};
+    if (req.isAuthenticated()){
+        locals.user = req.user;
+        let checkins = checkinsController.list(req, res);
+        console.log('check ins: ' + checkins);
+        console.log(typeof(checkins));
+        res.render('dashboard', locals);
+    } else {
+        res.redirect('/');
+    }
+});
+
+/* POST checkin */
+router.post('/dashboard', (req, res) => {
+    //usersController.update;
+    if (req.isAuthenticated()){
+        checkinsController.create(req, res);
+    } else {
+        res.redirect('/');
+    }
+});
 
 /* GET user profile */
 router.get('/profile', (req, res) => {
     let locals = {};
     if (req.isAuthenticated()){
         locals.user = req.user;
-        console.log('user: ' + Object.keys(req.user));
         res.render('profile', locals);
     } else {
         res.redirect('/');
@@ -55,7 +79,7 @@ router.get('/profile/update', (req, res) => {
     }
 });
 
-/* PUT updated profile */
+/* POST updated profile */
 router.post('/profile/update', (req, res) => {
     //usersController.update;
     if (req.isAuthenticated()){
@@ -77,7 +101,7 @@ router.get('/signup', (req, res, next) => {
 /* Auth, POST to signup */
 router.post('/signup', passport.authenticate('local-signup',
     {
-        successRedirect: '/',
+        successRedirect: '/dashboard',
         failureRedirect:'/signup',
         failureFlash: true
     })

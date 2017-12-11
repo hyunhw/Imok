@@ -8,3 +8,15 @@ body {
 .flash {
     color: red;
 }
+
+.btn {
+    &.btn-checkin {
+        padding: 0 2em 0 2em;
+        background-color: red;
+        display:block;
+        margin: 0 auto;
+        color: white;
+        font-size: 5em;
+    }
+}
+

@@ -9,6 +9,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">Home</a>
                 </li>
+                <% if (locals.user) { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">Dashboard</a>
+                </li>
+                <% } %>
             </ul>
             <ul class="navbar-nav ml-auto">
             <% if (locals.user) { %>
